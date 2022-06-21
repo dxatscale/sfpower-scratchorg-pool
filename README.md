@@ -62,7 +62,7 @@ Update through Setup:
 #### For users who are deploying the source code: 
 
 1. git clone https://github.com/dxatscale/sfpower-scratchorg-pool.git
-2. sfdx force:source:deploy -p sfpower-scratchorg-pool/force-app/main/default/objects/ScratchOrgInfo/fields/Allocation_status__c.field-meta.xml -u <devhub_alias> -l NoTestRun --predestructivechanges sfpower-scratchorg-pool/destructiveChanges/pre-deploy-destructive-changes.xml
+2. sfdx force:source:deploy -p sfpower-scratchorg-pool/force-app/main/default/objects/ScratchOrgInfo/fields/Allocation_status__c.field-meta.xml -u <devhub_alias> -l NoTestRun --predestructivechanges sfpower-scratchorg-pool/destructive-changes/pre-deploy-destructive-changes.xml
 
 #### For users who have built their own unlocked package: 
 
