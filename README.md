@@ -66,7 +66,7 @@ Update through Setup:
 
 #### For users who have built their own unlocked package: 
 
-Update your existing source code within your package and create a new package version using:
+Update the existing source code within your package locally and create a new package version using:
 
         sfdx force:package:version:create -p sfpower-scratchorg-pool -x -v <devhub_alias> -w 30
 
