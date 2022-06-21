@@ -27,18 +27,26 @@ to be manually synced up
 -  Build an Org Depedendent Unlocked Package in your DevHub and deploy it
 
 
-        1. git clone https://github.com/dxatscale/sfpowerscripts
-
-        1. cd sfpowerscripts/prerequisites/scratchorgpool
-
-        1. sfdx force:package:create -n sfpower-scratchorg-pool -t Unlocked -r force-app -v <devhub_alias> --orgdependent
-
-        1. sfdx force:package:version:create -p sfpower-scratchorg-pool -x -v <devhub_alias> -w 30
-
-        1. Observe the package id created in sfdx-project.json
-
-        1. sfdx force:package:install -p <packageVersionId> -u <devhub_alias> -w 30
+        1.  git clone https://github.com/dxatscale/sfpowerscripts
+        2.  cd sfpowerscripts/prerequisites/scratchorgpool
+        3.  sfdx force:package:create -n sfpower-scratchorg-pool -t Unlocked -r force-app -v <devhub_alias> --orgdependent
+        4.  sfdx force:package:version:create -p sfpower-scratchorg-pool -x -v <devhub_alias> -w 30
+        5.  Observe the package id created in sfdx-project.json
+        6.  sfdx force:package:install -p <packageVersionId> -u <devhub_alias> -w 30
 
 ## Upgrading from 1.0 to 2.0
 
+In order to upgrade from 1.0 to 2.0 the field 'return' needs to be added to the existing package on your org
 
+Update through the CLI: 
+1. git clone https://github.com/dxatscale/sfpower-scratchorg-pool.git
+2. sfdx force:source:deploy -p sfpower-scratchorg-pool/force-app/main/default/objects/ScratchOrgInfo/fields/Allocation_status__c.field-meta.xml -u <devhub_alias>
+
+Update through Setup: 
+1. Go to Setup -> Object Manager
+2. Select 'ScratchOrgInfo' 
+3. Go to 'Fields and Relationships' 
+4. Select 'Allocation_Status__c' 
+5. Add a new value 'Return' 
+6. Your picklist values should reflect the below screenshot 
+![image](https://user-images.githubusercontent.com/63215232/174715103-316cabb2-d053-4812-9306-25521542be56.png)
