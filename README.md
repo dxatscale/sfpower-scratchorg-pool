@@ -36,7 +36,7 @@ to be manually synced up
 
 ## Upgrading from 1.1.0-1 to 2.0.0-1
 
-In order to upgrade from 1.1.0-1 to 2.0.0-1 the picklist value 'return' needs to be added to the 'Allocation_Status__c' 
+In order to upgrade from 1.1.0-1 to 2.0.0-1 the picklist value 'Return' needs to be added to the 'Allocation_Status__c' 
 
 ### For users who are using the sfpower-scratchorg-pool unlocked package:
 
@@ -48,7 +48,10 @@ In order to upgrade from 1.1.0-1 to 2.0.0-1 the picklist value 'return' needs to
 
 Update through the CLI: 
 1. git clone https://github.com/dxatscale/sfpower-scratchorg-pool.git
-2. sfdx force:source:deploy -p sfpower-scratchorg-pool/force-app/main/default/objects/ScratchOrgInfo/fields/Allocation_status__c.field-meta.xml -u <devhub_alias> -l NoTestRun
+2. Use force:source:deploy command to deploy the required field
+
+        sfdx force:source:deploy -p sfpower-scratchorg-pool/force-app/main/default/objects/ScratchOrgInfo/fields/Allocation_status__c.field-meta.xml -u <devhub_alias> -l RunSpecifiedTests -r skip
+
 
 Update through Setup: 
 1. Go to Setup -> Object Manager
@@ -62,7 +65,10 @@ Update through Setup:
 #### For users who are deploying the source code: 
 
 1. git clone https://github.com/dxatscale/sfpower-scratchorg-pool.git
-2. sfdx force:source:deploy -p sfpower-scratchorg-pool/force-app/main/default/objects/ScratchOrgInfo/fields/Allocation_status__c.field-meta.xml -u <devhub_alias> -l NoTestRun --predestructivechanges sfpower-scratchorg-pool/destructive-changes/pre-deploy-destructive-changes.xml
+2. Deploy using force:source:deploy with a destructive manifest supplied
+
+        sfdx force:source:deploy -p sfpower-scratchorg-pool/force-app/main/default/objects/ScratchOrgInfo/fields/Allocation_status__c.field-meta.xml -u <devhub_alias> -l RunSpecifiedTests -r skip --predestructivechanges sfpower-scratchorg-pool/destructive-changes/pre-deploy-destructive-changes.xml
+   
 
 #### For users who have built their own unlocked package: 
 
