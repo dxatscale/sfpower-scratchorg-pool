@@ -14,8 +14,8 @@ There are multiple options to install the supporting package to your environment
 -  Installing the Unlocked package to your DevHub using CLI
 
 
-        sfdx force:package:install -p 04t1P000000gOqzQAE -u Devhub -r -a package -s AdminsOnly -w 30
-
+        sfdx force:package:install -p 04t1P000000katQQAQ -u Devhub -r -a package -s AdminsOnly -w 30
+04t1P000000katQQAQ
 
 ### Issues with installing third party packages?
 
@@ -42,7 +42,7 @@ In order to upgrade from 1.1.0-1 to 2.0.0-1 the picklist value 'Return' needs to
 
 <b>First install the new version of the package in your DevHub: </b>
 
-        sfdx force:package:install --package 04t1P000000katQQAQ -u <devhub_alias>
+        sfdx force:package:install --package 04t1P000000katQQAQ -u <devhub_alias>  -r -a package -s AdminsOnly -w 30
 
 <b>Secondly add the new picklist value using either the CLI or the Setup menu</b>
 
@@ -53,7 +53,7 @@ Update through the CLI:
         sfdx force:source:deploy -p sfpower-scratchorg-pool/force-app/main/default/objects/ScratchOrgInfo/fields/Allocation_status__c.field-meta.xml -u <devhub_alias> -l RunSpecifiedTests -r skip
 
 
-Update through Setup: 
+Update through Setup Menu: 
 1. Go to Setup -> Object Manager
 2. Select 'ScratchOrgInfo' 
 3. Go to 'Fields and Relationships' 
@@ -67,7 +67,7 @@ Update through Setup:
 1. git clone https://github.com/dxatscale/sfpower-scratchorg-pool.git
 2. Deploy using force:source:deploy with a destructive manifest supplied
 
-        sfdx force:source:deploy -p sfpower-scratchorg-pool/force-app/main/default/objects/ScratchOrgInfo/fields/Allocation_status__c.field-meta.xml -u <devhub_alias> -l RunSpecifiedTests -r skip --predestructivechanges sfpower-scratchorg-pool/destructive-changes/pre-deploy-destructive-changes.xml
+        sfdx force:source:deploy -p force-app/main/default/objects/ScratchOrgInfo/fields/Allocation_status__c.field-meta.xml -u <devhub_alias> -l RunSpecifiedTests -r skip --predestructivechanges destructive-changes/pre-deploy-destructive-changes.xml
    
 
 #### For users who have built their own unlocked package: 
