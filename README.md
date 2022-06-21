@@ -38,3 +38,7 @@ to be manually synced up
         1. Observe the package id created in sfdx-project.json
 
         1. sfdx force:package:install -p <packageVersionId> -u <devhub_alias> -w 30
+
+## Upgrading from 1.0 to 2.0
+
+
