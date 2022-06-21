@@ -14,8 +14,8 @@ There are multiple options to install the supporting package to your environment
 -  Installing the Unlocked package to your DevHub using CLI
 
 
-        sfdx force:package:install -p 04t1P000000gOqzQAE -u Devhub -r -a package -s AdminsOnly -w 30
-
+        sfdx force:package:install -p 04t1P000000katQQAQ -u Devhub -r -a package -s AdminsOnly -w 30
+04t1P000000katQQAQ
 
 ### Issues with installing third party packages?
 
@@ -27,14 +27,54 @@ to be manually synced up
 -  Build an Org Depedendent Unlocked Package in your DevHub and deploy it
 
 
-        1. git clone https://github.com/dxatscale/sfpowerscripts
+        1.  git clone https://github.com/dxatscale/sfpowerscripts
+        2.  cd sfpowerscripts/prerequisites/scratchorgpool
+        3.  sfdx force:package:create -n sfpower-scratchorg-pool -t Unlocked -r force-app -v <devhub_alias> --orgdependent
+        4.  sfdx force:package:version:create -p sfpower-scratchorg-pool -x -v <devhub_alias> -w 30
+        5.  Observe the package id created in sfdx-project.json
+        6.  sfdx force:package:install -p <packageVersionId> -u <devhub_alias> -w 30
 
-        1. cd sfpowerscripts/prerequisites/scratchorgpool
+## Upgrading from 1.1.0-1 to 2.0.0-1
 
-        1. sfdx force:package:create -n sfpower-scratchorg-pool -t Unlocked -r force-app -v <devhub_alias> --orgdependent
+In order to upgrade from 1.1.0-1 to 2.0.0-1 the picklist value 'Return' needs to be added to the 'Allocation_Status__c' 
 
-        1. sfdx force:package:version:create -p sfpower-scratchorg-pool -x -v <devhub_alias> -w 30
+### For users who are using the sfpower-scratchorg-pool unlocked package:
 
-        1. Observe the package id created in sfdx-project.json
+<b>First install the new version of the package in your DevHub: </b>
 
-        1. sfdx force:package:install -p <packageVersionId> -u <devhub_alias> -w 30
+        sfdx force:package:install --package 04t1P000000katQQAQ -u <devhub_alias>  -r -a package -s AdminsOnly -w 30
+
+<b>Secondly add the new picklist value using either the CLI or the Setup menu</b>
+
+Update through the CLI: 
+1. git clone https://github.com/dxatscale/sfpower-scratchorg-pool.git
+2. Use force:source:deploy command to deploy the required field
+
+        sfdx force:source:deploy -p sfpower-scratchorg-pool/force-app/main/default/objects/ScratchOrgInfo/fields/Allocation_status__c.field-meta.xml -u <devhub_alias> -l RunSpecifiedTests -r skip
+
+
+Update through Setup Menu: 
+1. Go to Setup -> Object Manager
+2. Select 'ScratchOrgInfo' 
+3. Go to 'Fields and Relationships' 
+4. Select 'Allocation_Status__c' 
+5. Add a new value 'Return' 
+6. Your picklist values should reflect the below screenshot 
+![image](https://user-images.githubusercontent.com/63215232/174715103-316cabb2-d053-4812-9306-25521542be56.png)
+
+#### For users who are deploying the source code: 
+
+1. git clone https://github.com/dxatscale/sfpower-scratchorg-pool.git
+2. Deploy using force:source:deploy with a destructive manifest supplied
+
+        sfdx force:source:deploy -p force-app/main/default/objects/ScratchOrgInfo/fields/Allocation_status__c.field-meta.xml -u <devhub_alias> -l RunSpecifiedTests -r skip --predestructivechanges destructive-changes/pre-deploy-destructive-changes.xml
+   
+
+#### For users who have built their own unlocked package: 
+
+Update the existing source code within your package locally and create a new package version using:
+
+        sfdx force:package:version:create -p sfpower-scratchorg-pool -x -v <devhub_alias> -w 30
+
+
+
