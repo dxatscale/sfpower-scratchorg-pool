@@ -36,23 +36,16 @@ to be manually synced up
 
 ## Upgrading from 1.1.0-1 to 2.0.0-1
 
-In order to upgrade from 1.0 to 2.0 the picklist value 'return' needs to be added to the 'Allocation_Status__c' 
+In order to upgrade from 1.1.0-1 to 2.0.0-1 the picklist value 'return' needs to be added to the 'Allocation_Status__c' 
 
-SFDX force:package command version xx, 
+### For users who are using the sfpower-scratchorg-pool unlocked package:
 
+<b>First install the new version of the package in your DevHub: </b>
 
-Using Source package: Deprecate workflow, destructive manifest --predestructivechanges 
-
-api name: 
-
-#### For users who are using the sfpower-scratchorg-pool unlocked package:
-
-
-
-<b>First install the new version of the package in your DevHub</b>
 sfdx force:package:install --package 04t1P000000katQQAQ -u <devhub_alias>
 
 <b>Secondly add the new picklist value using either the CLI or the Setup menu</b>
+
 Update through the CLI: 
 1. git clone https://github.com/dxatscale/sfpower-scratchorg-pool.git
 2. sfdx force:source:deploy -p sfpower-scratchorg-pool/force-app/main/default/objects/ScratchOrgInfo/fields/Allocation_status__c.field-meta.xml -u <devhub_alias> -l NoTestRun
