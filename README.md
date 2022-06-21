@@ -42,7 +42,7 @@ In order to upgrade from 1.1.0-1 to 2.0.0-1 the picklist value 'return' needs to
 
 <b>First install the new version of the package in your DevHub: </b>
 
-sfdx force:package:install --package 04t1P000000katQQAQ -u <devhub_alias>
+        sfdx force:package:install --package 04t1P000000katQQAQ -u <devhub_alias>
 
 <b>Secondly add the new picklist value using either the CLI or the Setup menu</b>
 
