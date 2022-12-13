@@ -9,7 +9,7 @@ There are multiple options to install the supporting package to your environment
 -  Installing the Org-Dependent Unlocked Package to your DevHub from URL
 
        1. Login to your DevHub
-       2. Navigate to https://login.salesforce.com/packaging/installPackage.apexp?p0=04t1P000000gOqzQAE to install the **sfpower-scratchorg-pool** unlocked package into your DevHub.
+       2. Navigate to https://login.salesforce.com/packaging/installPackage.apexp?p0=04t1P000000katQQAQ to install the **sfpower-scratchorg-pool** unlocked package into your DevHub.
        3. Select **Install for Admin Only**
 
 -  Installing the Org-Dependent Unlocked Package to your DevHub using CLI
